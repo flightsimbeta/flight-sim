@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>Uçuş Simülatörü v0.5</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <canvas id="hud"></canvas>
+
+  <!-- Dokunmatik kontrol -->
+  <div id="touch">
+    <div id="joyBase"><div id="joyKnob"></div></div>
+    <div id="thrBase"><div id="thrKnob"></div></div>
+    <div id="toolbar">
+      <button class="tb" id="btnMus">♪</button>
+      <button class="tb" id="btnNav">📍</button>
+      <button class="tb" id="btnTgt">🎯</button>
+      <button class="tb" id="btnCam">👁</button>
+      <button class="tb" id="btnAB">🔥</button>
+    </div>
+  </div>
+
+  <!-- Menü -->
+  <div id="overlay">
+    <div class="card">
+      <h1>UÇUŞ SİMÜLATÖRÜ <span class="v">v0.5</span></h1>
+      <div class="sub">6DOF AERODİNAMİK · GERÇEK DÜNYA · v0.5</div>
+
+      <div id="viewMenu">
+        <button class="mode" data-act="free">
+          <span class="ico">✈</span>
+          <div><b>SERBEST UÇUŞ</b><small>Havalimanından kalkış</small></div>
+        </button>
+        <button class="mode" data-act="search">
+          <span class="ico">📍</span>
+          <div><b>KONUMA GİT</b><small>Şehir/adres ara · ışınlan</small></div>
+        </button>
+      </div>
+
+      <div id="viewSearch" class="hidden">
+        <button class="back" id="backMenu">← Geri</button>
+        <input id="searchInput" placeholder="İstanbul, Eiffel, Tokyo..." />
+        <button class="primary" id="searchBtn">ARA</button>
+        <div id="searchResults"></div>
+      </div>
+
+      <div id="viewConfirm" class="hidden">
+        <button class="back" id="backSearch">← Geri</button>
+        <div id="locName">—</div>
+        <div id="locCoords">—</div>
+        <button class="primary" id="teleportBtn">🚀 IŞINLA</button>
+      </div>
+
+      <div id="loading" class="hidden">
+        <div class="spinner"></div>
+        <div id="loadingText">Yükleniyor...</div>
+      </div>
+
+      <div class="keys">
+        <kbd>W/S</kbd><span>Pitch</span>
+        <kbd>A/D</kbd><span>Roll</span>
+        <kbd>Q/E</kbd><span>Yaw</span>
+        <kbd>SPACE/SHIFT</kbd><span>Gaz</span>
+        <kbd>B</kbd><span>Fren</span>
+        <kbd>F</kbd><span>Art yakıcı</span>
+        <kbd>G</kbd><span>İniş takımı</span>
+        <kbd>P</kbd><span>Konum ara</span>
+        <kbd>R</kbd><span>Reset</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Müzik paneli -->
+  <div id="musicPanel" class="hidden">
+    <div class="mh"><span>🎵 MÜZİK</span><span id="musicClose">✕</span></div>
+    <div id="musicName">— Parça yok —</div>
+    <div class="mrow">
+      <button id="musicPrev">⏮</button>
+      <button id="musicPlay">▶</button>
+      <button id="musicNext">⏭</button>
+    </div>
+    <input type="range" id="musicVol" min="0" max="1" step="0.01" value="0.5" />
+    <button id="musicUpload">📁 DOSYA YÜKLE</button>
+    <input type="file" id="musicFile" accept="audio/*" multiple hidden />
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
